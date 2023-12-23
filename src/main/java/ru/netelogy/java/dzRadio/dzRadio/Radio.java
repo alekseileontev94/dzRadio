@@ -4,9 +4,18 @@ package ru.netelogy.java.dzRadio.dzRadio;
 public class Radio {
     private int currentRadioStation;
     private int currentVolume;
+    private int maxCurrentStation;
+
+    public Radio() {
+        this.maxCurrentStation = 9;
+    }
+
+    public Radio(int numberOfRadioStation) {
+        this.maxCurrentStation = numberOfRadioStation - 1;
+    }
 
     public void next() {
-        if (currentRadioStation != 9) {
+        if (currentRadioStation != maxCurrentStation) {
             currentRadioStation++;
         } else {
             currentRadioStation = 0;
@@ -17,7 +26,7 @@ public class Radio {
         if (currentRadioStation != 0) {
             currentRadioStation--;
         } else {
-            currentRadioStation = 9;
+            currentRadioStation = maxCurrentStation;
         }
     }
 
@@ -45,14 +54,13 @@ public class Radio {
         if (currentRadioStation < 0) {
             return;
         }
-        if (currentRadioStation > 9) {
+        if (currentRadioStation > maxCurrentStation) {
             return;
         }
         this.currentRadioStation = currentRadioStation;
     }
 
     public int getCurrentVolume() {
-
         return currentVolume;
     }
 
@@ -64,5 +72,13 @@ public class Radio {
             return;
         }
         this.currentVolume = currentVolume;
+    }
+
+    public int getMaxCurrentStation() {
+        return maxCurrentStation;
+    }
+
+    public int getMinCurrentStation() {
+        return 0;
     }
 }
